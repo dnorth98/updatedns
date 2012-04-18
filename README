@@ -1,0 +1,13 @@
+I wrote this python script to update DNS on Amazon Route53. You can use it on dynamic hosts by putting it into cron, or on boot for cloud instances with inconsistent IP addresses.
+
+It uses the boto Amazon Web Services python interface for the heavy lifting. You'll need that installed.
+
+You can get boto from  http://boto.cloudhackers.com/en/latest/index.html
+
+You need to edit the script to place your AWS credentials in the two variables near the top of the script (awskeyid, awskeysecret). Then it's ready to go.
+
+You can specify the hostname as an argument on the command line:
+
+        updatedns.py myhost.mydomain.com
+
+        ...or it will try and resolve the hostname itself.
