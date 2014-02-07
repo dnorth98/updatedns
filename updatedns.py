@@ -3,7 +3,8 @@
 """
  Update DNS Entry in Amazon Route53 via boto
 -------------------------------------------------------------------
- Brian Parsons <brian@pmex.com>
+ Creator: Brian Parsons <brian@pmex.com>
+ Modified: Dave North <dnorth98@gmail.com>
 
  Requires: boto  - http://boto.cloudhackers.com/en/latest/index.html
 
@@ -12,6 +13,8 @@
 
 awskeyid - Amazon AWS Credentials Security Key ID
 awskeysecret - Amazon AWS Secret that matches the security key id
+
+NOTE: If no keys are provided, instance role credentials will be used
 
 """
 
@@ -82,7 +85,10 @@ except socket.error:
 print 'Current IP: %s' % newip
 
 # Initialize the connection to AWS Route53
-route53 = Route53Connection(awskeyid, awskeysecret)
+if awskeyid and awskeysecret:
+    route53 = Route53Connection(awskeyid, awskeysecret)
+else:
+    route53 = Route53Connection()
 
 # Get the zoneid
 try:
