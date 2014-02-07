@@ -59,7 +59,7 @@ print 'Hostname: %s' % hostname
 
 # Get current IP
 try:
-    ipsite = urllib.urlopen('http://checkip.dyndns.org')
+    ipsite = urllib.urlopen('http://169.254.169.254/latest/meta-data/public-ipv4')
 except:
     print 'Connection error getting IP address.'
     sys.exit(1)
